@@ -27,7 +27,7 @@ LINK_FILES = \
     $(LINK_LIBS) \
 ))
 
-$(OBJS): $(PREBUILD)
+#$(OBJS): $(PREBUILD)
 image:   $(OBJS) am $(LIBS) prompt
 prompt:  $(OBJS) am $(LIBS)
 run:     default
@@ -35,6 +35,17 @@ run:     default
 prompt:
 	@echo \# Creating binary image [$(ARCH)]
 
+define REPORT
+if [ $$? != 0 ];then \
+        echo "${BINARY} \033[31m [FAILED]\033[0m" >> ${RESULT}; \
+        else\
+        echo "${BINARY} \033[32m [SUC]\033[0m" >> ${RESULT}; \
+        fi
+endef
+
+test:
+	$(SINGLE_EMU) -i $(BINARY).bin >>$(LOG_DIR)/$(notdir $(BINARY)).log 2>&1;$(REPORT)
+	
 clean: 
 	rm -rf $(APP_DIR)/build/
 

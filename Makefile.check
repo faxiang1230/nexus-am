@@ -13,7 +13,7 @@ endif
 ARCH  ?= native
 ARCHS := $(basename $(notdir $(shell ls $(AM_HOME)/am/arch/*.mk)))
 ifeq ($(filter $(ARCHS), $(ARCH)), )
-$(error Invalid ARCH. Supported: $(ARCHS))
+$(error Invalid ARCH.Supported: $(ARCHS) $(ARCH))
 endif
 
 ## ARCH=x86-qemu -> ISA=x86; PLATFORM=qemu
