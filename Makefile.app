@@ -27,7 +27,7 @@ LINK_FILES = \
     $(LINK_LIBS) \
 ))
 
-#$(OBJS): $(PREBUILD)
+$(OBJS): $(PREBUILD)
 image:   $(OBJS) am $(LIBS) prompt
 prompt:  $(OBJS) am $(LIBS)
 run:     default
@@ -45,7 +45,7 @@ endef
 
 test:
 	$(SINGLE_EMU) -i $(BINARY).bin >>$(LOG_DIR)/$(notdir $(BINARY)).log 2>&1;$(REPORT)
-	
+
 clean: 
 	rm -rf $(APP_DIR)/build/
 

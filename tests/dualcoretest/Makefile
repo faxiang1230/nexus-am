@@ -3,7 +3,6 @@ include $(AM_HOME)/Makefile.check
 
 SINGLE_EMU=$(DUAL_EMU)
 ALL = $(basename $(notdir $(shell find tests/. -name "*.c")))
-VERIFY_WITH_MULTI_CORE=1
 
 all: $(addprefix Makefile., $(ALL))
 	@echo "" $(ALL)
